@@ -13,13 +13,17 @@ export function CmsPage({ slug }: { slug: string }) {
   return (
     <SiteChrome>
       <main id="main" className="page-body">
-        {page ? (
+        {page?.blocks?.length ? (
           <>
             <JsonLd data={jsonLd({ title: page.title, metaTitle: page.metaTitle, metaDescription: page.metaDescription })} />
             <BcmsBlocks blocks={page.blocks} forms={forms} turnstileSiteKey={turnstileSiteKey ?? undefined} />
           </>
         ) : (
-          <div><p className="empty-note">This page hasn’t been published yet.</p></div>
+          <div>
+            <p className="empty-note">
+              This page has no published content yet — add blocks to it in BetterCMS and publish.
+            </p>
+          </div>
         )}
       </main>
     </SiteChrome>
