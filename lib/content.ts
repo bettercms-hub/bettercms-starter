@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import type { Image } from "./cms";
 
 /**
  * Read content entries from the deploy Action's build snapshot (`bcms-content.json`,
@@ -40,11 +41,18 @@ export function getSingleton<T>(model: string): T | undefined {
 export type Repeatable<T> = { repeatable?: T[] };
 export type NavLink = { label: string; href: string };
 export type Social = { label: string; href: string };
+/** The `site` global — brand + chrome + SEO defaults, all editable in the CMS.
+ *  Every field here is seeded by the template and rendered somewhere; if you add one,
+ *  render it, and if you stop rendering one, drop it from the seed. */
 export type Site = {
   brandName?: string;
   navLinks?: Repeatable<NavLink>;
   footerTagline?: string;
   socials?: Repeatable<Social>;
+  seoTitle?: string;
+  seoDescription?: string;
+  ogImage?: Image;
+  twitterHandle?: string;
 };
 /** Unwrap a repeatable field to a plain list. */
 export function items<T>(field?: Repeatable<T>): T[] {
