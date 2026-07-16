@@ -22,7 +22,6 @@ export type CaseStudyFields = {
   summary?: string;
   coverImage?: Image;
   body?: RichText;
-  result?: string;
 };
 
 /** Resolve a hydrated author reference (id string at depth 0 → null). */
