@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { BcmsField } from "@bettercms-ai/next";
 import { listEntries, getEntry } from "../../../lib/content";
 import { authorData, type BlogPostFields } from "../../../lib/cms";
 import { SiteChrome } from "../../../components/SiteChrome";
@@ -33,14 +34,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <JsonLd data={jsonLd(seoArgs)} />
         <article className="article">
           <Link className="back-link" href="/blog">← Back to blog</Link>
-          <h1>{f.title}</h1>
+          <BcmsField path="title"><h1>{f.title}</h1></BcmsField>
           <p className="byline">
             {author && <>By <strong>{author.name}</strong>{author.role ? `, ${author.role}` : ""}</>}
             {author && f.publishedDate ? " · " : ""}
             {f.publishedDate}
           </p>
-          {f.coverImage?.url && <img className="cover" src={f.coverImage.url} alt={f.coverImage.alt ?? ""} />}
-          {f.body?.html && <div className="prose" dangerouslySetInnerHTML={{ __html: f.body.html }} />}
+          {f.coverImage?.url && <img className="cover" src={f.coverImage.url} alt={f.coverImage.alt ?? ""} data-bcms-field="coverImage" data-bcms-kind="image" />}
+          {f.body?.html && <BcmsField path="body" kind="richtext"><div className="prose" dangerouslySetInnerHTML={{ __html: f.body.html }} /></BcmsField>}
         </article>
       </main>
     </SiteChrome>
