@@ -2,10 +2,15 @@
 
 /** Footer newsletter (Ft7). Renders the seeded `Newsletter` form, which nothing rendered before.
  *
- *  Deliberately NOT <BcmsForm>: that component owns its own submit wiring keyed off every
- *  `form[data-bcms-form]` on the page, so a second instance alongside the contact form would
- *  double-bind and POST each submission twice. This owns its own state and posts to the same
- *  public endpoint. */
+ *  Deliberately NOT <BcmsForm>: this is a one-field inline row (label · input · button) for the
+ *  footer, not that component's stacked field list. It owns its own state and posts to the same
+ *  public endpoint.
+ *
+ *  The reason previously given here — "BcmsForm keys its submit wiring off every
+ *  `form[data-bcms-form]` on the page, so a second instance double-POSTs" — was never true of the
+ *  React component: it submits through a per-instance `onSubmit` handler (packages/next/src/
+ *  form.tsx), with no document-wide binding. That footgun belonged to the Astro sibling's inline
+ *  script, and has since been fixed there too. */
 import { useState } from "react";
 import type { DeliveryForm } from "@bettercms-ai/sdk";
 
