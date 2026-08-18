@@ -5,3 +5,9 @@ node_modules
 next-env.d.ts
 *.tsbuildinfo
 bcms-content.json
+
+# A timestamped backup (.env.bak.<ts>) slipped past a bare `.env` rule once and committed a
+# live GitHub token — FLO-675. Ignore every variant; keep the checked-in example.
+.env
+.env.*
+!.env.example
