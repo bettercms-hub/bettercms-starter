@@ -1,6 +1,6 @@
 name: Build
 
-# Build gate: type-checks and builds the starter on every PR and on pushes to main
+# Build gate: type-checks and builds the starter on every PR
 # (`next build` type-checks as part of the build). This repo is a template people
 # fork, so a broken build here is shipped to every one of them.
 #
